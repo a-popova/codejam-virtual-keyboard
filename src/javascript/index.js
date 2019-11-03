@@ -8,10 +8,18 @@ window.onload = function() {
   this.document.body.innerHTML += keyboard_us;
   this.document.body.innerHTML += keyboard_rus;
 
+  let keyboard = document.querySelectorAll(".keyboard");
+
+  if (keyboard[0].classList.contains("hide")){
+    this.document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`rus-${event.code}`)); type(document.getElementById(`rus-${event.code}`))});
+    this.document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`rus-${event.code}`))});
+  } else if(keyboard[1].classList.contains("hide")) {
+    this.document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`us-${event.code}`)); type(document.getElementById(`us-${event.code}`))});
+    this.document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`us-${event.code}`))}); 
+  }
   this.document.body.addEventListener("click", click);
-  this.document.body.addEventListener("keydown", function(event){highlight(document.getElementById(event.code)); type(document.getElementById(event.code))});
-  this.document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(event.code))});
 }
+
 var ctrl = false;
 var shift = false;
 var alt = false;
@@ -21,6 +29,9 @@ function highlight(node) {
      node = node.parentElement;
    } 
    node.classList.add("active");
+   setTimeout (function(){
+     node.classList.remove("active");
+   }, 300)
    result.focus();
 }
 
@@ -38,7 +49,7 @@ function highlightOff(node){
 }
 
 function type(char){
-  console.log(char.textContent, char);
+  console.log(char);
   var result = document.body.querySelector("#result");
   event.preventDefault();
   if (char.textContent === "Backspace"){
@@ -51,9 +62,22 @@ function type(char){
     switchLanguage();
   } else if (char.textContent === "alt"){
     alt = true;
+  } else if (char.textContent === ""){
+    result.value += ' ';
   } else if (char.tagName === 'DIV'){
-    char = char.firstElementChild;
-    result.value += char.textContent;
+    if (shift === true){
+      if (char.parentNode === document.querySelector(".row")){
+        char = char.lastElementChild;
+        result.value += char.textContent;
+      } else {
+        char = char.firstElementChild;
+        result.value += char.textContent.toUpperCase();
+      }
+    } 
+    else {
+      char = char.firstElementChild;
+      result.value += char.textContent;
+    }
   } else if (char.tagName === 'SUP'){
     char = char.previousElementSibling;
     result.value += char.textContent;
@@ -72,13 +96,13 @@ function click (){
 }
 
 function switchLanguage(){
-  var keyboard = document.querySelectorAll(".keyboard");
+  let keyboardView = document.querySelectorAll(".keyboard");
   if (shift === true && ctrl === true){
-    for (let i = 0; i < keyboard.length; i++){
-      if (keyboard[i].classList.contains("hide")){
-        keyboard[i].classList.remove("hide");
+    for (let i = 0; i < keyboardView.length; i++){
+      if (keyboardView[i].classList.contains("hide")){
+        keyboardView[i].classList.remove("hide");
       } else {
-        keyboard[i].classList.add("hide");
+        keyboardView[i].classList.add("hide");
       }
     }
   }
