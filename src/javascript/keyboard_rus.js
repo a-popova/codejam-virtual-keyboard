@@ -1,7 +1,7 @@
-const keyboard_rus = `<div class="keyboard rus">
+const keyboard_rus = `<div class="keyboard rus hide">
       
         <div class="row">
-          <div class="key" id="Backquote><span>ё</span><sup>~</sup></div>
+          <div class="key" id="Backquote"><span>ё</span><sup>~</sup></div>
           <div class="key" id="Digit1"><span>1</span><sup>!</sup></div>
           <div class="key" id="Digit2"><span>2</span><sup>"</sup></div>
           <div class="key" id="Digit3"><span>3</span><sup>№</sup></div>
