@@ -8,30 +8,33 @@ window.onload = function() {
   this.document.body.innerHTML += keyboard_us;
   this.document.body.innerHTML += keyboard_rus;
 
-  let keyboard = document.querySelectorAll(".keyboard");
-
+  var keyboard = document.querySelectorAll(".keyboard");
   if (keyboard[0].classList.contains("hide")){
-    this.document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`rus-${event.code}`)); type(document.getElementById(`rus-${event.code}`))});
-    this.document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`rus-${event.code}`))});
+    document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`rus-${event.code}`)); type(document.getElementById(`rus-${event.code}`))});
+    document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`rus-${event.code}`))});
   } else if(keyboard[1].classList.contains("hide")) {
-    this.document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`us-${event.code}`)); type(document.getElementById(`us-${event.code}`))});
-    this.document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`us-${event.code}`))}); 
+    document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`us-${event.code}`)); type(document.getElementById(`us-${event.code}`))});
+    document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`us-${event.code}`))}); 
   }
+
   this.document.body.addEventListener("click", click);
 }
 
 var ctrl = false;
 var shift = false;
 var alt = false;
+let caps= false;
 
 function highlight(node) {
    if (node.tagName === 'SPAN' || node.tagName === 'SUP'){
      node = node.parentElement;
    } 
    node.classList.add("active");
-   setTimeout (function(){
-     node.classList.remove("active");
-   }, 300)
+   if (node.textContent !== "Caps Lock"){
+    setTimeout (function(){
+      node.classList.remove("active");
+    }, 300)
+  }
    result.focus();
 }
 
@@ -62,7 +65,16 @@ function type(char){
     switchLanguage();
   } else if (char.textContent === "alt"){
     alt = true;
-  } else if (char.textContent === ""){
+  } else if (char.textContent === "Enter"){
+    result.value += '\n';
+  } else if (char.textContent === "Caps Lock"){
+    if (caps === false){
+      highlight(char);
+      caps = true;
+    } else {
+      caps = false;
+    }
+  }  else if (char === document.querySelector(".space")){
     result.value += ' ';
   } else if (char.tagName === 'DIV'){
     if (shift === true){
@@ -73,8 +85,10 @@ function type(char){
         char = char.firstElementChild;
         result.value += char.textContent.toUpperCase();
       }
-    } 
-    else {
+    } else if(caps === true){
+      char = char.firstElementChild;
+      result.value += char.textContent.toUpperCase();
+    } else {
       char = char.firstElementChild;
       result.value += char.textContent;
     }
