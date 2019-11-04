@@ -61,6 +61,7 @@ function highlightOff(node){
 }
 
 function type(char){
+  console.log(char.textContent);
   var result = document.body.querySelector("#result");
   event.preventDefault();
   if (char.textContent === "Backspace"){
@@ -81,6 +82,7 @@ function type(char){
       caps = true;
     } else {
       caps = false; 
+      char.classList.remove("move");
     }
   }  else if (char === document.querySelector(".space")){
     result.value += ' ';
