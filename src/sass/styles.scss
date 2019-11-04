@@ -22,17 +22,7 @@ body {
 }
 
 .move {
-  animation-name: move;
-  animation-duration: 500ms;
-  animation-iteration-count: infinite;
-}
-@keyframes move {
-  from {
-    border-radius: 0%;
-  }
-  to {
-    border-radius: 75%;
-  }
+  border-radius: 75%;
 }
 
 .keyboard { 
@@ -62,6 +52,9 @@ body {
             -4px 3px rgb(217,192,32), -4px 4px rgb(189,164,4),
             -5px 4px rgb(216,191,31), -5px 5px rgb(188,163,3),
             -6px 5px rgb(215,190,30), -6px 6px rgb(187,162,2);
+
+            transition-property: border-radius;
+            transition-duration: 500ms;
         }
         .active {
           background: #7a6609;

@@ -20,19 +20,9 @@ body {
 }
 
 .move {
-  animation-name: move;
-  animation-duration: 500ms;
-  animation-iteration-count: infinite;
+  border-radius: 75%;
 }
 
-@keyframes move {
-  from {
-    border-radius: 0%;
-  }
-  to {
-    border-radius: 75%;
-  }
-}
 .keyboard {
   width: 690px;
   margin: 0 auto;
@@ -54,6 +44,8 @@ body {
   line-height: 40px;
   background: linear-gradient(to top, #fce25b, #ecc92b);
   box-shadow: -1px 0px #dcc323, -1px 1px #c0a707, -2px 1px #dbc222, -2px 2px #bfa606, -3px 2px #dac121, -3px 3px #bea505, -4px 3px #d9c020, -4px 4px #bda404, -5px 4px #d8bf1f, -5px 5px #bca303, -6px 5px #d7be1e, -6px 6px #bba202;
+  transition-property: border-radius;
+  transition-duration: 500ms;
 }
 .keyboard .row .active {
   background: #7a6609;

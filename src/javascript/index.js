@@ -8,16 +8,22 @@ window.onload = function() {
   this.document.body.innerHTML += keyboard_us;
   this.document.body.innerHTML += keyboard_rus;
 
-  var keyboard = document.querySelectorAll(".keyboard");
-  if (keyboard[0].classList.contains("hide")){
-    document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`rus-${event.code}`)); type(document.getElementById(`rus-${event.code}`))});
-    document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`rus-${event.code}`))});
-  } else if(keyboard[1].classList.contains("hide")) {
-    document.body.addEventListener("keydown", function(event){event.preventDefault(); highlight(document.getElementById(`us-${event.code}`)); type(document.getElementById(`us-${event.code}`))});
-    document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`us-${event.code}`))}); 
-  }
+  
+  document.body.addEventListener("keydown", function(event){getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`))});
+  document.body.addEventListener("keyup", function(event){getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`))});
 
   this.document.body.addEventListener("click", () => {click()});
+}
+
+var language;
+
+function getKeyboardLanguage (){
+  var keyboard = document.querySelectorAll(".keyboard");
+  if (keyboard[0].classList.contains("hide")){
+    language = "rus-";
+  } else {
+    language = "us-";
+  }
 }
 
 var ctrl = false;
@@ -56,7 +62,6 @@ function highlightOff(node){
   ctrl = false;
   shift = false;
   alt = false;
-
   result.focus();
 }
 
@@ -83,17 +88,12 @@ function type(char){
       caps = false; 
       char.classList.remove("active", "move");
     }
-  }  else if (char === document.querySelector(".space")){
+  }  else if (char.textContent === "" && char.tagName !== "TEXTAREA"){
     result.value += ' ';
   } else if (char.tagName === 'DIV'){
     if (shift === true){
-      if (char.parentNode === document.querySelector(".row")){
-        char = char.lastElementChild;
-        result.value += char.textContent;
-      } else {
-        char = char.firstElementChild;
-        result.value += char.textContent.toUpperCase();
-      }
+      char = char.lastElementChild;
+      result.value += char.textContent.toUpperCase();
     } else if(caps === true){
       char = char.firstElementChild;
       result.value += char.textContent.toUpperCase();
