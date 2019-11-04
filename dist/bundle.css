@@ -19,6 +19,20 @@ body {
   display: none;
 }
 
+.move {
+  animation-name: move;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+  from {
+    border-radius: 0%;
+  }
+  to {
+    border-radius: 75%;
+  }
+}
 .keyboard {
   width: 690px;
   margin: 0 auto;

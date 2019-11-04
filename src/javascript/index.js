@@ -26,23 +26,32 @@ var alt = false;
 let caps= false;
 
 function highlight(node) {
-   if (node.tagName === 'SPAN' || node.tagName === 'SUP'){
-     node = node.parentElement;
-   } 
-   node.classList.add("active");
-   if (node.textContent !== "Caps Lock"){
-    setTimeout (function(){
-      node.classList.remove("active");
-    }, 300)
-  }
+   node.classList.add("active", "move");
    result.focus();
+}
+
+function highlightOnClick(node){
+  if (node.tagName === 'SPAN' || node.tagName === 'SUP'){
+    node = node.parentElement;
+  } 
+  if (node.tagName !== "TEXTAREA"){
+    node.classList.add("active", "move");
+  }
+  if (node.textContent !== "Caps Lock"){
+   setTimeout (function(){
+     node.classList.remove("active", "move");
+   }, 300)
+ }
+  result.focus();
 }
 
 function highlightOff(node){
   if (node.tagName === 'SPAN' || node.tagName === 'SUP'){
     node = node.parentElement;
   }
-  node.classList.remove("active");
+  if (node.textContent !== "Caps Lock"){
+    node.classList.remove("active", "move");
+  }
 
   ctrl = false;
   shift = false;
@@ -52,7 +61,6 @@ function highlightOff(node){
 }
 
 function type(char){
-  console.log(char);
   var result = document.body.querySelector("#result");
   event.preventDefault();
   if (char.textContent === "Backspace"){
@@ -72,7 +80,7 @@ function type(char){
       highlight(char);
       caps = true;
     } else {
-      caps = false;
+      caps = false; 
     }
   }  else if (char === document.querySelector(".space")){
     result.value += ' ';
@@ -103,8 +111,10 @@ function type(char){
 
 function click (){
   let target = event.target;
-  highlight(target);
-  type(target);
+  if (target.tagName !== "BODY"){
+    highlightOnClick(target);
+    type(target);
+  }
   target = target.parentNode;
   result.focus();
 }
