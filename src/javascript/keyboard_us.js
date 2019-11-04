@@ -1,4 +1,5 @@
 const keyboard_us = `<div class="keyboard us">
+    <h4>Change language by clicking <span class="key">Shift</span> + <span class="key">Ctrl</span></h4>
 
     <div class="row">
       <div class="key" id="us-Backquote"><span>\`</span><sup>~</sup></div>

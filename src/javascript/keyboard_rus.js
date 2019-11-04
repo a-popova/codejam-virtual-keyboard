@@ -1,4 +1,5 @@
 const keyboard_rus = `<div class="keyboard rus">
+        <h4>Change language by clicking <span class="key">Shift</span> + <span class="key">Ctrl</span></h4>
       
         <div class="row">
           <div class="key" id="rus-Backquote"><span>ё</span><sup>~</sup></div>

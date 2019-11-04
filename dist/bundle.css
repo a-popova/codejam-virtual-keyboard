@@ -4,6 +4,21 @@ body {
   color: white;
 }
 
+h4 {
+  width: 690px;
+  color: black;
+  text-align: center;
+  margin: 30px auto;
+}
+h4 span.key {
+  text-align: center;
+  margin-left: 6px;
+  background: linear-gradient(to top, #fce25b, #ecc92b);
+  box-shadow: -1px 0px #dcc323, -1px 1px #c0a707, -2px 1px #dbc222, -2px 2px #bfa606, -3px 2px #dac121, -3px 3px #bea505, -4px 3px #d9c020, -4px 4px #bda404, -5px 4px #d8bf1f, -5px 5px #bca303, -6px 5px #d7be1e, -6px 6px #bba202;
+  transition-property: border-radius;
+  transition-duration: 500ms;
+}
+
 #result {
   width: 680px;
   height: 300px;
