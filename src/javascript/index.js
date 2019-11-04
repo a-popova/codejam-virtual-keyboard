@@ -17,7 +17,7 @@ window.onload = function() {
     document.body.addEventListener("keyup", function(event){highlightOff(document.getElementById(`us-${event.code}`))}); 
   }
 
-  this.document.body.addEventListener("click", click);
+  this.document.body.addEventListener("click", () => {click()});
 }
 
 var ctrl = false;
@@ -61,7 +61,6 @@ function highlightOff(node){
 }
 
 function type(char){
-  console.log(char.textContent);
   var result = document.body.querySelector("#result");
   event.preventDefault();
   if (char.textContent === "Backspace"){
@@ -82,7 +81,7 @@ function type(char){
       caps = true;
     } else {
       caps = false; 
-      char.classList.remove("move");
+      char.classList.remove("active", "move");
     }
   }  else if (char === document.querySelector(".space")){
     result.value += ' ';

@@ -62,15 +62,15 @@ body {
             -4px 3px rgb(217,192,32), -4px 4px rgb(189,164,4),
             -5px 4px rgb(216,191,31), -5px 5px rgb(188,163,3),
             -6px 5px rgb(215,190,30), -6px 6px rgb(187,162,2);
-            + .active {
-              background: #7a6609;
-              box-shadow: -1px 0px #7a6609, -1px 1px #7a6609,
-              -2px 1px #7a6609, -2px 2px #7a6609,
-              -3px 2px #7a6609, -3px 3px #7a6609,
-              -4px 3px #7a6609, -4px 4px #7a6609,
-              -5px 4px #7a6609, -5px 5px #7a6609,
-              -6px 5px #7a6609, -6px 6px #7a6609;
-            }
+        }
+        .active {
+          background: #7a6609;
+          box-shadow: -1px 0px #7a6609, -1px 1px #7a6609,
+          -2px 1px #7a6609, -2px 2px #7a6609,
+          -3px 2px #7a6609, -3px 3px #7a6609,
+          -4px 3px #7a6609, -4px 4px #7a6609,
+          -5px 4px #7a6609, -5px 5px #7a6609,
+          -6px 5px #7a6609, -6px 6px #7a6609;
         }
 
         .backspace, 

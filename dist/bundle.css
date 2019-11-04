@@ -55,7 +55,7 @@ body {
   background: linear-gradient(to top, #fce25b, #ecc92b);
   box-shadow: -1px 0px #dcc323, -1px 1px #c0a707, -2px 1px #dbc222, -2px 2px #bfa606, -3px 2px #dac121, -3px 3px #bea505, -4px 3px #d9c020, -4px 4px #bda404, -5px 4px #d8bf1f, -5px 5px #bca303, -6px 5px #d7be1e, -6px 6px #bba202;
 }
-.keyboard .row .key + .active {
+.keyboard .row .active {
   background: #7a6609;
   box-shadow: -1px 0px #7a6609, -1px 1px #7a6609, -2px 1px #7a6609, -2px 2px #7a6609, -3px 2px #7a6609, -3px 3px #7a6609, -4px 3px #7a6609, -4px 4px #7a6609, -5px 4px #7a6609, -5px 5px #7a6609, -6px 5px #7a6609, -6px 6px #7a6609;
 }
