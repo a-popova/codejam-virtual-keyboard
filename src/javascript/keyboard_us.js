@@ -1,4 +1,4 @@
-const keyboard_us = `<div class="keyboard us">
+const keyboardUs = `<div class="keyboard us">
     <h4>Change language by clicking <span class="key">Shift</span> + <span class="key">Ctrl</span></h4>
 
     <div class="row">
@@ -80,4 +80,4 @@ const keyboard_us = `<div class="keyboard us">
     </div>
     
 </div>`;
-export default keyboard_us;
+export default keyboardUs;

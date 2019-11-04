@@ -1,28 +1,9 @@
 import '../sass/styles.scss';
-import keyboard_rus from './keyboard_rus';
-import keyboard_us from './keyboard_us';
+import keyboardRus from './keyboard_rus';
+import keyboardUs from './keyboard_us';
 import input from './input';
 
-window.onload = function () {
-  this.document.body.innerHTML = input;
-  this.document.body.innerHTML += keyboard_us;
-  this.document.body.innerHTML += keyboard_rus;
 
-  const keyboard = document.querySelectorAll('.keyboard');
-
-  if (localStorage.getItem('language' === 'us-')) {
-    keyboard[1].classList.add('hide');
-  } else if (localStorage.getItem('language') === 'rus-') {
-    keyboard[0].classList.add('hide');
-  } else {
-    keyboard[1].classList.add('hide');
-  }
-
-  document.body.addEventListener('keydown', (event) => { getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`)); });
-  document.body.addEventListener('keyup', (event) => { getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`)); });
-
-  this.document.body.addEventListener('click', () => { click(); });
-};
 
 var language = 'us-';
 function getKeyboardLanguage() {
@@ -36,12 +17,10 @@ function getKeyboardLanguage() {
 
 let ctrl = false;
 let shift = false;
-let alt = false;
 let caps = false;
 
 function highlight(node) {
   node.classList.add('active', 'move');
-  result.focus();
 }
 
 function highlightOnClick(node) {
@@ -56,7 +35,6 @@ function highlightOnClick(node) {
       node.classList.remove('active', 'move');
     }, 300);
   }
-  result.focus();
 }
 
 function highlightOff(node) {
@@ -69,13 +47,10 @@ function highlightOff(node) {
 
   ctrl = false;
   shift = false;
-  alt = false;
-  result.focus();
 }
 
 function type(char) {
   const result = document.body.querySelector('#result');
-  event.preventDefault();
   if (char.textContent === 'Backspace') {
     result.value = result.value.substring(0, result.value.length - 1);
   } else if (char.textContent === 'ctrl') {
@@ -84,9 +59,7 @@ function type(char) {
   } else if (char.textContent === 'Shift') {
     shift = true;
     switchLanguage();
-  } else if (char.textContent === 'alt') {
-    alt = true;
-  } else if (char.textContent === 'Enter') {
+  }  else if (char.textContent === 'Enter') {
     result.value += '\n';
   } else if (char.textContent === 'Caps Lock') {
     if (caps === false) {
@@ -125,7 +98,6 @@ function click() {
     type(target);
   }
   target = target.parentNode;
-  result.focus();
 }
 
 function switchLanguage() {
@@ -141,5 +113,25 @@ function switchLanguage() {
   }
   getKeyboardLanguage();
   localStorage.setItem('language', language);
-  result.focus();
 }
+
+window.onload = function () {
+  this.document.body.innerHTML = input;
+  this.document.body.innerHTML += keyboardUs;
+  this.document.body.innerHTML += keyboardRus;
+
+  const keyboard = document.querySelectorAll('.keyboard');
+
+  if (localStorage.getItem('language' === 'us-')) {
+    keyboard[1].classList.add('hide');
+  } else if (localStorage.getItem('language') === 'rus-') {
+    keyboard[0].classList.add('hide');
+  } else {
+    keyboard[1].classList.add('hide');
+  }
+
+  document.body.addEventListener('keydown', (event) => { getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`)); });
+  document.body.addEventListener('keyup', (event) => { getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`)); });
+
+  this.document.body.addEventListener('click', () => { click(); });
+};
