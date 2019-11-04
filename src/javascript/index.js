@@ -8,22 +8,30 @@ window.onload = function() {
   this.document.body.innerHTML += keyboard_us;
   this.document.body.innerHTML += keyboard_rus;
 
-  
+  let keyboard = document.querySelectorAll(".keyboard");
+
+  if (localStorage.getItem("language" === "us-")){
+    keyboard[1].classList.add("hide");
+  } else if (localStorage.getItem("language") === "rus-"){
+    keyboard[0].classList.add("hide");
+  } else {
+    keyboard[1].classList.add("hide");
+  }
+
   document.body.addEventListener("keydown", function(event){getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`))});
   document.body.addEventListener("keyup", function(event){getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`))});
 
   this.document.body.addEventListener("click", () => {click()});
 }
 
-var language;
-
+var language = "us-";
 function getKeyboardLanguage (){
   var keyboard = document.querySelectorAll(".keyboard");
   if (keyboard[0].classList.contains("hide")){
     language = "rus-";
-  } else {
+  } else if (keyboard[1].classList.contains("hide")){
     language = "us-";
-  }
+  } 
 }
 
 var ctrl = false;
@@ -131,5 +139,7 @@ function switchLanguage(){
       }
     }
   }
+  getKeyboardLanguage();
+  localStorage.setItem("language", language);
   result.focus();
 }

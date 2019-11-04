@@ -1,4 +1,4 @@
-const keyboard_rus = `<div class="keyboard rus hide">
+const keyboard_rus = `<div class="keyboard rus">
       
         <div class="row">
           <div class="key" id="rus-Backquote"><span>ё</span><sup>~</sup></div>
@@ -72,10 +72,10 @@ const keyboard_rus = `<div class="keyboard rus hide">
           <div class="key space" id="rus-Space"></div>
           <div class="key alt" id="rus-AltRight"><span>alt</span></div>
           <div class="key ctrl" id="rus-ControlRight"><span>ctrl</span></div>
-          <div class="key left" id="rus-ArrowLeft"><span>←</span></div>
+          <!--<div class="key left" id="rus-ArrowLeft"><span>←</span></div>
           <div class="key up" id="rus-ArrowUp"><span>↑</span></div>
           <div class="key right" id="rus-ArrowRight"><span>→</span></div>
-          <div class="key down" id="rus-ArrowDown"><span>↓</span></div>
+          <div class="key down" id="rus-ArrowDown"><span>↓</span></div>-->
         </div>
         
       </div>`

@@ -72,10 +72,10 @@ const keyboard_us = `<div class="keyboard us">
       <div class="key space" id="us-Space"></div>
       <div class="key alt" id="us-AltRight"><span>alt</span></div>
       <div class="key ctrl" id="us-ControlRight"><span>ctrl</span></div>
-      <div class="key left" id="us-ArrowLeft"><span>←</span></div>
+      <!--<div class="key left" id="us-ArrowLeft"><span>←</span></div>
       <div class="key up" id="us-ArrowUp"><span>↑</span></div>
       <div class="key right" id="us-ArrowRight"><span>→</span></div>
-      <div class="key down" id="us-ArrowDown"><span>↓</span></div>
+      <div class="key down" id="us-ArrowDown"><span>↓</span></div>-->
     </div>
     
 </div>`
