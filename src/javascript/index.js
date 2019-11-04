@@ -4,8 +4,7 @@ import keyboardUs from './keyboard_us';
 import input from './input';
 
 
-
-var language = 'us-';
+let language = 'us-';
 function getKeyboardLanguage() {
   const keyboard = document.querySelectorAll('.keyboard');
   if (keyboard[0].classList.contains('hide')) {
@@ -49,6 +48,21 @@ function highlightOff(node) {
   shift = false;
 }
 
+function switchLanguage() {
+  const keyboardView = document.querySelectorAll('.keyboard');
+  if (shift === true && ctrl === true) {
+    for (let i = 0; i < keyboardView.length; i++) {
+      if (keyboardView[i].classList.contains('hide')) {
+        keyboardView[i].classList.remove('hide');
+      } else {
+        keyboardView[i].classList.add('hide');
+      }
+    }
+  }
+  getKeyboardLanguage();
+  localStorage.setItem('language', language);
+}
+
 function type(char) {
   const result = document.body.querySelector('#result');
   if (char.textContent === 'Backspace') {
@@ -59,7 +73,7 @@ function type(char) {
   } else if (char.textContent === 'Shift') {
     shift = true;
     switchLanguage();
-  }  else if (char.textContent === 'Enter') {
+  } else if (char.textContent === 'Enter') {
     result.value += '\n';
   } else if (char.textContent === 'Caps Lock') {
     if (caps === false) {
@@ -98,21 +112,6 @@ function click() {
     type(target);
   }
   target = target.parentNode;
-}
-
-function switchLanguage() {
-  const keyboardView = document.querySelectorAll('.keyboard');
-  if (shift === true && ctrl === true) {
-    for (let i = 0; i < keyboardView.length; i++) {
-      if (keyboardView[i].classList.contains('hide')) {
-        keyboardView[i].classList.remove('hide');
-      } else {
-        keyboardView[i].classList.add('hide');
-      }
-    }
-  }
-  getKeyboardLanguage();
-  localStorage.setItem('language', language);
 }
 
 window.onload = function () {
