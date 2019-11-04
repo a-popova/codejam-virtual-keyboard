@@ -79,5 +79,5 @@ const keyboard_rus = `<div class="keyboard rus">
           <div class="key down" id="rus-ArrowDown"><span>↓</span></div>-->
         </div>
         
-      </div>`
+      </div>`;
 export default keyboard_rus;

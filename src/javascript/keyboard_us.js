@@ -79,5 +79,5 @@ const keyboard_us = `<div class="keyboard us">
       <div class="key down" id="us-ArrowDown"><span>↓</span></div>-->
     </div>
     
-</div>`
+</div>`;
 export default keyboard_us;
