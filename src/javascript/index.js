@@ -17,6 +17,7 @@ function getKeyboardLanguage() {
 let ctrl = false;
 let shift = false;
 let caps = false;
+let capsCount = 0;
 
 function highlight(node) {
   node.classList.add('active', 'move');
@@ -24,17 +25,30 @@ function highlight(node) {
 
 function highlightOnClick(node) {
   let symbol = node;
-  if (symbol.tagName === 'SPAN' || symbol.tagName === 'SUP') {
+  if (symbol.textContent === 'Caps Lock') {
+    capsCount += 1;
+    if (capsCount % 2 === 0) {
+      if (symbol.tagName === 'SPAN') {
+        symbol = symbol.parentElement;
+      }
+      symbol.classList.remove('active', 'move');
+    } else {
+      if (symbol.tagName === 'SPAN') {
+        symbol = symbol.parentElement;
+      }
+      symbol.classList.add('active', 'move');
+    }
+  } else if (symbol.tagName === 'SPAN' || symbol.tagName === 'SUP') {
     symbol = symbol.parentElement;
-  }
-  if (symbol.tagName !== 'TEXTAREA' || symbol.tagName !== 'H4') {
+    symbol.classList.add('active', 'move');
+  } else if (symbol.tagName !== 'TEXTAREA' || symbol.tagName !== 'H4') {
     symbol.classList.add('active', 'move');
   }
-  if (symbol.textContent !== 'Caps Lock') {
-    setTimeout(() => {
-      symbol.classList.remove('active', 'move');
-    }, 300);
-  }
+  // if (symbol.textContent !== 'Caps Lock') {
+  //   setTimeout(() => {
+  //     symbol.classList.remove('active', 'move');
+  //   }, 300);
+  // }
 }
 
 function highlightOff(node) {
@@ -104,6 +118,8 @@ function type(char) {
   } else if (symbol.tagName === 'SUP') {
     symbol = symbol.previousElementSibling;
     result.value += symbol.textContent;
+  } else if (caps === true) {
+    result.value += symbol.textContent.toUpperCase();
   } else {
     result.value += symbol.textContent;
   }
@@ -135,5 +151,6 @@ window.onload = function () {
   document.body.addEventListener('keydown', (event) => { getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`)); });
   document.body.addEventListener('keyup', (event) => { getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`)); });
 
-  this.document.body.addEventListener('click', (event) => { click(event); });
+  this.document.body.addEventListener('mousedown', (event) => { click(event); });
+  this.document.body.addEventListener('click', (event) => { highlightOff(event.target); });
 };
