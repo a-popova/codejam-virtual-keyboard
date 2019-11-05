@@ -63,6 +63,7 @@ const keyboardRus = `<div class="keyboard rus">
           <div class="key" id="rus-Comma"><span>б</span></div>
           <div class="key" id="rus-Period"><span>ю</span></div>
           <div class="key" id="rus-Slash"><span>.</span><sup>,</sup></div>
+          <div class="key up" id="rus-ArrowUp"><span>↑</span></div>
           <div class="key shift" id="rus-ShiftRight"><span>Shift</span></div>
         </div>
         
@@ -73,10 +74,9 @@ const keyboardRus = `<div class="keyboard rus">
           <div class="key space" id="rus-Space"></div>
           <div class="key alt" id="rus-AltRight"><span>alt</span></div>
           <div class="key ctrl" id="rus-ControlRight"><span>ctrl</span></div>
-          <!--<div class="key left" id="rus-ArrowLeft"><span>←</span></div>
-          <div class="key up" id="rus-ArrowUp"><span>↑</span></div>
+          <div class="key left" id="rus-ArrowLeft"><span>←</span></div>
+          <div class="key down" id="rus-ArrowDown"><span>↓</span></div>
           <div class="key right" id="rus-ArrowRight"><span>→</span></div>
-          <div class="key down" id="rus-ArrowDown"><span>↓</span></div>-->
         </div>
         
       </div>`;

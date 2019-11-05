@@ -63,6 +63,7 @@ const keyboardUs = `<div class="keyboard us">
       <div class="key" id="us-Comma"><span>,</span><sup><</sup></div>
       <div class="key" id="us-Period"><span>.</span><sup>></sup></div>
       <div class="key" id="us-Slash"><span>/</span><sup>?</sup></div>
+      <div class="key up" id="us-ArrowUp"><span>↑</span></div>
       <div class="key shift" id="us-ShiftRight"><span>Shift</span></div>
     </div>
     
@@ -73,10 +74,9 @@ const keyboardUs = `<div class="keyboard us">
       <div class="key space" id="us-Space"></div>
       <div class="key alt" id="us-AltRight"><span>alt</span></div>
       <div class="key ctrl" id="us-ControlRight"><span>ctrl</span></div>
-      <!--<div class="key left" id="us-ArrowLeft"><span>←</span></div>
-      <div class="key up" id="us-ArrowUp"><span>↑</span></div>
+      <div class="key left" id="us-ArrowLeft"><span>←</span></div>
+      <div class="key down" id="us-ArrowDown"><span>↓</span></div>
       <div class="key right" id="us-ArrowRight"><span>→</span></div>
-      <div class="key down" id="us-ArrowDown"><span>↓</span></div>-->
     </div>
     
 </div>`;
