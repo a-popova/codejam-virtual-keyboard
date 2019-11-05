@@ -23,25 +23,27 @@ function highlight(node) {
 }
 
 function highlightOnClick(node) {
-  if (node.tagName === 'SPAN' || node.tagName === 'SUP') {
-    node = node.parentElement;
+  let symbol = node;
+  if (symbol.tagName === 'SPAN' || symbol.tagName === 'SUP') {
+    symbol = symbol.parentElement;
   }
-  if (node.tagName !== 'TEXTAREA') {
-    node.classList.add('active', 'move');
+  if (symbol.tagName !== 'TEXTAREA' || symbol.tagName !== 'H4') {
+    symbol.classList.add('active', 'move');
   }
-  if (node.textContent !== 'Caps Lock') {
+  if (symbol.textContent !== 'Caps Lock') {
     setTimeout(() => {
-      node.classList.remove('active', 'move');
+      symbol.classList.remove('active', 'move');
     }, 300);
   }
 }
 
 function highlightOff(node) {
-  if (node.tagName === 'SPAN' || node.tagName === 'SUP') {
-    node = node.parentElement;
+  let symbol = node;
+  if (symbol.tagName === 'SPAN' || symbol.tagName === 'SUP') {
+    symbol = symbol.parentElement;
   }
-  if (node.textContent !== 'Caps Lock') {
-    node.classList.remove('active', 'move');
+  if (symbol.textContent !== 'Caps Lock') {
+    symbol.classList.remove('active', 'move');
   }
 
   ctrl = false;
@@ -51,7 +53,7 @@ function highlightOff(node) {
 function switchLanguage() {
   const keyboardView = document.querySelectorAll('.keyboard');
   if (shift === true && ctrl === true) {
-    for (let i = 0; i < keyboardView.length; i++) {
+    for (let i = 0; i < keyboardView.length; i += 1) {
       if (keyboardView[i].classList.contains('hide')) {
         keyboardView[i].classList.remove('hide');
       } else {
@@ -64,54 +66,55 @@ function switchLanguage() {
 }
 
 function type(char) {
+  let symbol = char;
   const result = document.body.querySelector('#result');
-  if (char.textContent === 'Backspace') {
+  if (symbol.textContent === 'Backspace') {
     result.value = result.value.substring(0, result.value.length - 1);
-  } else if (char.textContent === 'ctrl') {
+  } else if (symbol.textContent === 'ctrl') {
     ctrl = true;
     switchLanguage();
-  } else if (char.textContent === 'Shift') {
+  } else if (symbol.textContent === 'Shift') {
     shift = true;
     switchLanguage();
-  } else if (char.textContent === 'Enter') {
+  } else if (symbol.textContent === 'Enter') {
     result.value += '\n';
-  } else if (char.textContent === 'Caps Lock') {
+  } else if (symbol.textContent === 'Caps Lock') {
     if (caps === false) {
-      highlight(char);
+      highlight(symbol);
       caps = true;
     } else {
       caps = false;
-      char.classList.remove('active', 'move');
+      symbol.classList.remove('active', 'move');
     }
-  } else if (char.textContent === '' && char.tagName !== 'TEXTAREA') {
+  } else if (symbol.textContent === '' && symbol.tagName !== 'TEXTAREA') {
     result.value += ' ';
-  } else if (char.tagName === 'DIV') {
+  } else if (symbol.tagName === 'H4') {
+    result.focus();
+  } else if (symbol.tagName === 'DIV') {
     if (shift === true) {
-      char = char.lastElementChild;
-      result.value += char.textContent.toUpperCase();
+      symbol = symbol.lastElementChild;
+      result.value += symbol.textContent.toUpperCase();
     } else if (caps === true) {
-      char = char.firstElementChild;
-      result.value += char.textContent.toUpperCase();
+      symbol = symbol.firstElementChild;
+      result.value += symbol.textContent.toUpperCase();
     } else {
-      char = char.firstElementChild;
-      result.value += char.textContent;
+      symbol = symbol.firstElementChild;
+      result.value += symbol.textContent;
     }
-  } else if (char.tagName === 'SUP') {
-    char = char.previousElementSibling;
-    result.value += char.textContent;
+  } else if (symbol.tagName === 'SUP') {
+    symbol = symbol.previousElementSibling;
+    result.value += symbol.textContent;
   } else {
-    result.value += char.textContent;
+    result.value += symbol.textContent;
   }
   result.focus();
 }
 
-function click() {
-  let { target } = event;
-  if (target.tagName !== 'BODY') {
-    highlightOnClick(target);
-    type(target);
+function click(event) {
+  if (event.target.tagName !== 'BODY') {
+    highlightOnClick(event.target);
+    type(event.target);
   }
-  target = target.parentNode;
 }
 
 window.onload = function () {
@@ -132,5 +135,5 @@ window.onload = function () {
   document.body.addEventListener('keydown', (event) => { getKeyboardLanguage(); event.preventDefault(); highlight(document.getElementById(`${language}${event.code}`)); type(document.getElementById(`${language}${event.code}`)); });
   document.body.addEventListener('keyup', (event) => { getKeyboardLanguage(); highlightOff(document.getElementById(`${language}${event.code}`)); });
 
-  this.document.body.addEventListener('click', () => { click(); });
+  this.document.body.addEventListener('click', (event) => { click(event); });
 };
