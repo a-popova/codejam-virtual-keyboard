@@ -44,11 +44,6 @@ function highlightOnClick(node) {
   } else if (symbol.tagName !== 'TEXTAREA' || symbol.tagName !== 'H4') {
     symbol.classList.add('active', 'move');
   }
-  // if (symbol.textContent !== 'Caps Lock') {
-  //   setTimeout(() => {
-  //     symbol.classList.remove('active', 'move');
-  //   }, 300);
-  // }
 }
 
 function highlightOff(node) {
