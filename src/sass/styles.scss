@@ -1,0 +1,118 @@
+
+body {
+    min-height: 100vh;
+    background: white;
+    color: white;
+}
+
+h4 {
+  width: 690px;
+  color: black;
+  text-align: center;
+  margin: 30px auto;
+  span.key {
+    text-align: center;
+    margin-left: 6px;
+    background: linear-gradient(to top, #fce25b, #ecc92b);
+    box-shadow:
+    -1px 0px rgb(220,195,35), -1px 1px rgb(192,167,7),
+    -2px 1px rgb(219,194,34), -2px 2px rgb(191,166,6),
+    -3px 2px rgb(218,193,33), -3px 3px rgb(190,165,5),
+    -4px 3px rgb(217,192,32), -4px 4px rgb(189,164,4),
+    -5px 4px rgb(216,191,31), -5px 5px rgb(188,163,3),
+    -6px 5px rgb(215,190,30), -6px 6px rgb(187,162,2);
+
+    transition-property: border-radius;
+    transition-duration: 500ms;
+  }
+}
+
+#result{
+  width: 680px;
+  height: 300px;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.move {
+  border-radius: 75%;
+}
+
+.keyboard { 
+    width: 690px;
+    margin: 0 auto;
+
+    .row {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        clear: both;
+
+        .key {
+            width: 40px;
+            height: 40px;
+            float: left;
+            cursor: pointer;
+            color: #fff;
+            margin-left: 6px;
+            text-align: center;
+            line-height: 40px;
+            background: linear-gradient(to top, #fce25b, #ecc92b);
+            box-shadow:
+            -1px 0px rgb(220,195,35), -1px 1px rgb(192,167,7),
+            -2px 1px rgb(219,194,34), -2px 2px rgb(191,166,6),
+            -3px 2px rgb(218,193,33), -3px 3px rgb(190,165,5),
+            -4px 3px rgb(217,192,32), -4px 4px rgb(189,164,4),
+            -5px 4px rgb(216,191,31), -5px 5px rgb(188,163,3),
+            -6px 5px rgb(215,190,30), -6px 6px rgb(187,162,2);
+
+            transition-property: border-radius;
+            transition-duration: 500ms;
+        }
+        .active {
+          background: #7a6609;
+          box-shadow: -1px 0px #7a6609, -1px 1px #7a6609,
+          -2px 1px #7a6609, -2px 2px #7a6609,
+          -3px 2px #7a6609, -3px 3px #7a6609,
+          -4px 3px #7a6609, -4px 4px #7a6609,
+          -5px 4px #7a6609, -5px 5px #7a6609,
+          -6px 5px #7a6609, -6px 6px #7a6609;
+        }
+
+        .backspace, 
+        .capslock,
+        .enter {
+          width: 80px;
+        }
+
+        .shift {
+          width: 115px;
+        }
+
+        .tab {
+          width: 80px;
+        }
+        .space {
+          width: 300px;
+        }
+
+        sup {
+          margin: -10px 0 0 -20px;
+          font-size: 12px;
+          position: absolute;
+      }
+    }
+    #us-ShiftRight,
+    #rus-ShiftRight {
+      width: 45px;
+    }
+}
+    
